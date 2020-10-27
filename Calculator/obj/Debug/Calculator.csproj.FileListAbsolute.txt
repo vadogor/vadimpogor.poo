@@ -1,0 +1,10 @@
+D:\Universitate\POO\POO Projects\Calculator\bin\Debug\Calculator.exe.config
+D:\Universitate\POO\POO Projects\Calculator\bin\Debug\Calculator.exe
+D:\Universitate\POO\POO Projects\Calculator\bin\Debug\Calculator.pdb
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.Form1.resources
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.exe
+D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.pdb
