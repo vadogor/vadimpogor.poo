@@ -23,6 +23,8 @@ namespace TextEditor
 
         }
 
+        #region File
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = null;
@@ -34,7 +36,7 @@ namespace TextEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text files (*.txt) | *.txt";
+            ofd.Filter = "Text files (*.txt) | *.txt | RTF files (*.rtf) | *.rtf";
             if (ofd.ShowDialog() == DialogResult.Cancel)
                 return;
             filename = ofd.SafeFileName;
@@ -55,12 +57,21 @@ namespace TextEditor
         {
             SaveFileDialog sfd = new SaveFileDialog();
 
-            sfd.Filter = "Text files (*.txt) | *.txt";
+            sfd.Filter = "Text files (*.txt) | *.txt | RTF files (*.rtf) | *.rtf";
             if (sfd.ShowDialog() == DialogResult.Cancel)
                 return;
             spath = sfd.FileName;
             File.WriteAllText(spath, richTextBox1.Text);
         }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog1.ShowDialog();
+        }
+
+#endregion
+
+        #region Edit
 
         private void BoldToolButton_Click(object sender, EventArgs e)
         {
@@ -109,21 +120,14 @@ namespace TextEditor
                 richTextBox1.SelectionColor = colorDialog1.Color;
         }
 
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        private void JustifyAlign_Click(object sender, EventArgs e)
         {
-            printDialog1.ShowDialog();
+
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            richTextBox1.SelectedText = Clipboard.GetText();
-        }
+        #endregion
 
-        private void richTextBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-                contextMenuStrip1.Show(MousePosition, ToolStripDropDownDirection.Right);
-        }
+        #region CCP
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,6 +141,12 @@ namespace TextEditor
             richTextBox1.SelectedText = "";
         }
 
-        //TODO: Add context menu, to be showed
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectedText = Clipboard.GetText();
+        }
+        
+        #endregion
+
     }
 }
