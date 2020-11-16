@@ -8,13 +8,3 @@ D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.csproj.Generate
 D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
 D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.exe
 D:\Universitate\POO\POO Projects\Calculator\obj\Debug\Calculator.pdb
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.exe
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.pdb
-C:\Users\User\VP\vadimpogor.poo\Calculator\bin\Debug\Calculator.exe.config
-C:\Users\User\VP\vadimpogor.poo\Calculator\bin\Debug\Calculator.exe
-C:\Users\User\VP\vadimpogor.poo\Calculator\bin\Debug\Calculator.pdb
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.Form1.resources
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.Properties.Resources.resources
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
-C:\Users\User\VP\vadimpogor.poo\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
