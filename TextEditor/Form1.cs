@@ -13,13 +13,13 @@ namespace TextEditor
 {
     public partial class Form1 : Form
     {
-        string filename, path, spath;
+        string path = "";
+        string filter = "Text files (*.txt) |*.txt| Rich text files (*.rtf) |*.rtf";
 
 
         public Form1()
         {
             InitializeComponent();
-            path = "";
 
         }
 
@@ -28,7 +28,6 @@ namespace TextEditor
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = null;
-            filename = null;
             path = "";
             this.Text = "New file*";
         }
@@ -36,19 +35,28 @@ namespace TextEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text files (*.txt) | *.txt | RTF files (*.rtf) | *.rtf";
+            ofd.Filter = filter;
+
             if (ofd.ShowDialog() == DialogResult.Cancel)
                 return;
-            filename = ofd.SafeFileName;
+
             path = ofd.FileName;
-            richTextBox1.Text = File.ReadAllText(path);
-            this.Text = filename;
+            if (path.IndexOf(".txt") == -1)
+                richTextBox1.LoadFile(path, RichTextBoxStreamType.RichText);
+            else
+                richTextBox1.Text = File.ReadAllText(path);
+            this.Text = ofd.SafeFileName;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (path != "")
-                File.WriteAllText(path, richTextBox1.Text);
+            {
+                if (path.IndexOf(".txt") == -1)
+                    richTextBox1.SaveFile(path, RichTextBoxStreamType.RichText);
+                else
+                    File.WriteAllText(path, richTextBox1.Text);
+            } 
             else
                 saveAsToolStripMenuItem_Click(null, null);
         }
@@ -56,12 +64,17 @@ namespace TextEditor
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = filter;
 
-            sfd.Filter = "Text files (*.txt) | *.txt | RTF files (*.rtf) | *.rtf";
             if (sfd.ShowDialog() == DialogResult.Cancel)
                 return;
-            spath = sfd.FileName;
-            File.WriteAllText(spath, richTextBox1.Text);
+
+            path = sfd.FileName;
+            if (path.IndexOf(".txt") == -1)
+                richTextBox1.SaveFile(path, RichTextBoxStreamType.RichText);
+            else
+                File.WriteAllText(path, richTextBox1.Text);
+            this.Text = sfd.FileName.Substring(sfd.FileName.LastIndexOf('\\') + 1);
         }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,33 +82,47 @@ namespace TextEditor
             printDialog1.ShowDialog();
         }
 
-#endregion
+        #endregion
 
         #region Edit
 
+        #region BUIC
+
         private void BoldToolButton_Click(object sender, EventArgs e)
         {
+
             if (richTextBox1.SelectionFont.Bold)
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style & ~FontStyle.Bold);
             else
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style | FontStyle.Bold);
         }
 
         private void ItalicToolButton_Click(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionFont.Italic)
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style & ~FontStyle.Italic);
             else
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Italic);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style | FontStyle.Italic);
         }
 
         private void UnderlineToolButton_Click(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionFont.Underline)
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style & ~FontStyle.Underline);
             else
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Underline);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, richTextBox1.SelectionFont.Style | FontStyle.Underline);
         }
+        private void ColorToolButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            else
+                richTextBox1.SelectionColor = colorDialog1.Color;
+        }
+
+        #endregion
+
+        #region Align
 
         private void LeftAllign_Click(object sender, EventArgs e)
         {
@@ -111,42 +138,42 @@ namespace TextEditor
         {
             richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
         }
-        //TODO:: Justify align
-        private void ColorToolButton_Click(object sender, EventArgs e)
-        {
-            if (colorDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            else
-                richTextBox1.SelectionColor = colorDialog1.Color;
-        }
 
-        private void JustifyAlign_Click(object sender, EventArgs e)
-        {
+        #endregion
 
+        private void findAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(FRForm findForm = new FRForm())
+            {
+                findForm.ShowDialog();
+            }
         }
 
         #endregion
 
-        #region CCP
+        #region CopyCutPaste(Context)
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(richTextBox1.SelectedText != "")
+            if (richTextBox1.SelectedText != "")
                 Clipboard.SetText(richTextBox1.SelectedText);
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(richTextBox1.SelectedText); 
-            richTextBox1.SelectedText = "";
+            if (richTextBox1.SelectedText != "")
+            {
+                Clipboard.SetText(richTextBox1.SelectedText);
+                richTextBox1.SelectedText = "";
+            }
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.SelectedText = Clipboard.GetText();
         }
-        
-        #endregion
 
+        #endregion
+        //TODO: Find and replace
     }
 }

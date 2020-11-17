@@ -66,7 +66,6 @@
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.statusStrip1.SuspendLayout();
@@ -214,6 +213,7 @@
             this.findAndReplaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.findAndReplaceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.findAndReplaceToolStripMenuItem.Text = "Find and replace";
+            this.findAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.findAndReplaceToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -281,8 +281,7 @@
             this.toolStripSeparator3,
             this.toolStripButton7,
             this.toolStripButton8,
-            this.toolStripButton9,
-            this.toolStripButton10});
+            this.toolStripButton9});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(726, 25);
@@ -400,16 +399,6 @@
             this.toolStripButton9.Text = "Left";
             this.toolStripButton9.Click += new System.EventHandler(this.RightAllign_Click);
             // 
-            // toolStripButton10
-            // 
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton10.Text = "Justify";
-            this.toolStripButton10.Click += new System.EventHandler(this.JustifyAlign_Click);
-            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
@@ -464,7 +453,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripButton NewToolButton;
         private System.Windows.Forms.ToolStripButton OpenToolButton;
         private System.Windows.Forms.ToolStripButton SaveToolButton;
