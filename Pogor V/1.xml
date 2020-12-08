@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<functions>
+  <function>2+3^4-16/2</function>
+  <function>2+3-6*8/2</function>
+  <function>123/2</function>
+</functions>
